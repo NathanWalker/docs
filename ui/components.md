@@ -10,25 +10,29 @@ previous_url: /ui-views,/ui/ui-views
 
 NativeScript ships with a set of user interface [`views`](http://docs.nativescript.org/api-reference/modules/_ui_core_view_.html) (also known as widgets) which you can use to build the user interface of a mobile application. Most of these views wrap the corresponding native view for each platform while providing a common API for working with it. For example, the `Button` view renders an [`android.widget.Button`](http://developer.android.com/reference/android/widget/Button.html) on Android and [`UIButton`](https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIButton_Class/) on iOS.
 
-* [Button](#button)
-* [Label](#label)
-* [TextField](#textfield)
-* [TextView](#textview)
-* [SearchBar](#searchbar)
-* [Switch](#switch)
-* [Slider](#slider)
-* [Progress ](#progress)
-* [ActivityIndicator](#activityindicator)
-* [Image](#image)
-* [ListView](#listview)
-* [HtmlView](#htmlview)
-* [WebView](#webview)
-* [TabView](#tabview)
-* [SegmentedBar](#segmentedbar)
-* [DatePicker](#datepicker)
-* [TimePicker](#timepicker)
-* [ListPicker](#listpicker)
-* [Dialogs](#dialogs)
+<ul class="component-list">
+  <li><a href="#button">Button</a></li>
+  <li><a href="#label">Label</a></li>
+  <li><a href="#textfield">TextField</a></li>
+  <li><a href="#textview">TextView</a></li>
+  <li><a href="#searchbar">SearchBar</a></li>
+  <li><a href="#switch">Switch</a></li>
+  <li><a href="#slider">Slider</a></li>
+  <li><a href="#progress">Progress</a></li>
+  <li><a href="#activityindicator">ActivityIndicator</a></li>
+  <li><a href="#image">Image</a></li>
+  <li><a href="#listview">ListView</a></li>
+  <li><a href="#htmlview">HtmlView</a></li>
+  <li><a href="#webview">WebView</a></li>
+  <li><a href="#tabview">TabView</a></li>
+  <li><a href="#segmentedbar">SegmentedBar</a></li>
+  <li><a href="#datepicker">DatePicker</a></li>
+  <li><a href="#timepicker">TimePicker</a></li>
+  <li><a href="#listpicker">ListPicker</a></li>
+  <li><a href="#dialogs">Dialogs</a></li>
+</ul>
+
+<iframe src="https://appetize.io/embed/hcb273p7nr9fg7dnd1gd1cr15r?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black&xdocMsg=true" width="274px" height="587px" frameborder="0" scrolling="no" style="position:fixed;right:0;bottom:-30px;"></iframe>
 
 Defining the layout of the application is also an important part of the application development. For more information about the different layout containers that are available in NativeScript, see [The NativeScript Layout System]({%slug layouts %}).
 
