@@ -32,7 +32,15 @@ NativeScript ships with a set of user interface [`views`](http://docs.nativescri
   <li><a href="#dialogs">Dialogs</a></li>
 </ul>
 
-<iframe src="https://appetize.io/embed/hcb273p7nr9fg7dnd1gd1cr15r?device=iphone5s&scale=75&orientation=portrait&osVersion=9.3&autoplay=true&xdocMsg=true" width="274px" height="587px" frameborder="0" scrolling="no" style="position:fixed;right:0;bottom:-30px;"></iframe>
+<aside class="app-preview">
+  <div class="app-type">
+    <a data-type="ios" class="active">iOS</a>
+    <a data-type="android">Android</a>
+  </div>
+  <div class="app-embed">
+    <iframe src="https://appetize.io/embed/hcb273p7nr9fg7dnd1gd1cr15r?device=iphone5s&scale=100&orientation=portrait&osVersion=9.3&autoplay=true&xdocMsg=true" width="360px" height="587px" frameborder="0" scrolling="no"></iframe>
+  </div>
+</aside>
 
 Defining the layout of the application is also an important part of the application development. For more information about the different layout containers that are available in NativeScript, see [The NativeScript Layout System]({%slug layouts %}).
 
@@ -47,7 +55,9 @@ Defining the layout of the application is also an important part of the applicat
 
 The [Button]({%ns_cookbook ui/button%}) widget provides a standard button widget that reacts to a `tap` event.
 
-![button android](../img/gallery/android/buttonPage.png "button android")![button ios](../img/gallery/ios/buttonPage.png "button ios")
+``` XML
+<Button class="btn btn-primary" text="Tap"></Button>
+```
 
 **Native Component**
 
@@ -59,7 +69,9 @@ The [Button]({%ns_cookbook ui/button%}) widget provides a standard button widget
 
 The [Label]({%ns_cookbook ui/label%}) widget provides a text label that shows read-only text.
 
-![label android](../img/gallery/android/labelPage.png "label android")![label ios](../img/gallery/ios/labelPage.png "label ios")
+``` XML
+<Label text="The quick brown fox jumps over the lazy dog." class="h2" textWrap="true" />
+```
 
 **Native Component**
 
@@ -71,7 +83,12 @@ The [Label]({%ns_cookbook ui/label%}) widget provides a text label that shows re
 
 The [TextField]({%ns_cookbook ui/text-field%}) widget provides an editable **single-line** text field.
 
-![text-field android](../img/gallery/android/textFieldPage.png "text-field android")![text-field ios](../img/gallery/ios/textFieldPage.png "text-field ios")
+``` XML
+<StackLayout class="input-field">
+  <TextField hint="Enter text..." class="input" />
+  <StackLayout class="hr-light"></StackLayout>
+</StackLayout>
+```
 
 **Native Component**
 
@@ -85,7 +102,11 @@ The [TextView]({%ns_cookbook ui/text-view%}) widget provides an editable **multi
 
 You can use it to show multi-line text and implement text editing.
 
-![text-view android](../img/gallery/android/textViewPage.png "text-view android")![text-view ios](../img/gallery/ios/textViewPage.png "text-view ios")
+``` XML
+<StackLayout class="input-field">
+  <TextView hint="Edit text..." text="The quick brown fox jumps over the dog." class="input" />
+</StackLayout>
+```
 
 **Native Component**
 
@@ -97,7 +118,9 @@ You can use it to show multi-line text and implement text editing.
 
 The [SearchBar]({%ns_cookbook ui/search-bar%}) widget provides a user interface for entering search queries and submitting requests to the search provider.
 
-![search-bar android](../img/gallery/android/searchBarPage.png "search-bar android")![search-bar ios](../img/gallery/ios/searchBarPage.png "search-bar ios")
+``` XML
+<SearchBar id="searchBar" hint="Search" text="" />
+```
 
 **Native Component**
 
@@ -109,7 +132,9 @@ The [SearchBar]({%ns_cookbook ui/search-bar%}) widget provides a user interface 
 
 The [Switch]({%ns_cookbook ui/switch%}) widget provides a two-state toggle switch from which you can choose between two options.
 
-![switch android](../img/gallery/android/switchPage.png "switch android")![switch ios](../img/gallery/ios/switchPage.png "switch ios")
+``` XML
+<Switch checked="true" class="switch" id="checked"/>
+```
 
 **Native Component**
 
@@ -121,7 +146,9 @@ The [Switch]({%ns_cookbook ui/switch%}) widget provides a two-state toggle switc
 
 The [Slider]({%ns_cookbook ui/slider%}) widget provides a slider that you can use to pick a numeric value within a configurable range.
 
-![slider android](../img/gallery/android/sliderPage.png "slider android")![slider ios](../img/gallery/ios/sliderPage.png "slider ios")
+``` XML
+<Slider minValue="1" maxValue="100" value="50" class="slider" />
+```
 
 **Native Component**
 
@@ -133,7 +160,9 @@ The [Slider]({%ns_cookbook ui/slider%}) widget provides a slider that you can us
 
 The [Progress]({%ns_cookbook ui/progress%}) widget is a visual bar indicator of a progress in a operation. It shows a bar representing the current progress of the operation.
 
-![progress android](../img/gallery/android/progressPage.png "progress android")![progress ios](../img/gallery/ios/progressPage.png "progress ios")
+``` XML
+<Progress id="progress" row="0" value="50" maxValue="100" class="progress" />
+```
 
 **Native Component**
 
@@ -145,7 +174,9 @@ The [Progress]({%ns_cookbook ui/progress%}) widget is a visual bar indicator of 
 
 The [ActivityIndicator]({%ns_cookbook ui/activity-indicator%}) widget is a visual spinner indicator which shows that a task is in progress.
 
-![activity-indicator android](../img/gallery/android/activityIndicatorPage.png "activity-indicator android")![activity-indicator ios](../img/gallery/ios/activityIndicatorPage.png "activity-indicator ios")
+``` XML
+<ActivityIndicator busy="true" class="activity-indicator" />
+```
 
 **Native Component**
 
@@ -157,7 +188,9 @@ The [ActivityIndicator]({%ns_cookbook ui/activity-indicator%}) widget is a visua
 
 The [Image]({%ns_cookbook ui/image%}) widget shows an image. You can load the image from an [`ImageSource`](http://docs.nativescript.org/api-reference/modules/_image_source_.html) or from a URL.
 
-![image android](../img/gallery/android/imagePage.png "image android")![image ios](../img/gallery/ios/imagePage.png "image ios")
+``` XML
+<Image src="~/img/nativescript.png" stretch="fill" />
+```
 
 **Native Component**
 
@@ -169,7 +202,15 @@ The [Image]({%ns_cookbook ui/image%}) widget shows an image. You can load the im
 
 The [ListView]({%ns_cookbook ui/list-view%}) shows items in a vertically scrolling list. You can set an [`itemTemplate`](http://docs.nativescript.org/api-reference/modules/_ui_list_view_.knowntemplates.html) to specify how each item in the list should be displayed.
 
-![list-view android](../img/gallery/android/listViewPage.png "list-view android")![list-view ios](../img/gallery/ios/listViewPage.png "list-view ios")
+``` XML
+<ListView items="{{ sampleItems }}" class="list-group">
+    <ListView.itemTemplate>
+        <StackLayout>
+            <Label class="list-group-item" text="{{ title }}"/>  
+        </StackLayout>
+    </ListView.itemTemplate>
+</ListView>
+```
 
 **Native Component**
 
@@ -181,7 +222,9 @@ The [ListView]({%ns_cookbook ui/list-view%}) shows items in a vertically scrolli
 
 The [HtmlView]({%ns_cookbook ui/html-view%}) represents a view with HTML content. Use this component instead of WebView when you want to show just static HTML content.
 
-![html-view android](../img/gallery/android/htmlViewPage.png "html-view android")![html-view ios](../img/gallery/ios/htmlViewPage.png "html-view ios")
+``` XML
+<HtmlView html="{{ htmlString }}" class="w-full h-full" />
+```
 
 **Native Component**
 
@@ -193,7 +236,9 @@ The [HtmlView]({%ns_cookbook ui/html-view%}) represents a view with HTML content
 
 The [WebView]({%ns_cookbook ui/web-view%}) shows web pages. You can load a page from a URL or by navigating back and forward.
 
-![web-view android](../img/gallery/android/webViewPage.png "web-view android")![web-view ios](../img/gallery/ios/webViewPage.png "web-view ios")
+``` XML
+<WebView src="https://nativescript.org" class="w-full h-full" />
+```
 
 **Native Component**
 
@@ -205,7 +250,32 @@ The [WebView]({%ns_cookbook ui/web-view%}) shows web pages. You can load a page 
 
 With the [TabView]({%ns_cookbook ui/tab-view%}) control, you can implement tab navigation.
 
-![tab-view android](../img/gallery/android/tabViewPage.png "tab-view android")![tab-view ios](../img/gallery/ios/tabViewPage.png "tab-view ios")
+``` XML
+<TabView id="tabViewContainer" class="tab-view">
+    <TabView.items>
+        <TabViewItem title="Tab 1" class="tab-view-item">
+            <TabViewItem.view>
+                <StackLayout class="page p-20">
+                  <Label text="Tab 1 Content" class="h1" />
+                  <StackLayout>
+                      <Label text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas malesuada ipsum leo, eu semper nunc ultrices sed. Cras at feugiat ligula. Vivamus sagittis porttitor eros vel commodo. Etiam vitae suscipit justo, et volutpat magna. Etiam in neque sagittis, pretium ipsum ut, aliquam sapien. Mauris eget suscipit ex. Nam posuere purus at risus tincidunt viverra. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nunc ac dolor et sapien dapibus semper et in metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque egestas dui sed ante interdum, at vulputate erat vulputate." textWrap="true" class="body" />
+                  </StackLayout>
+                </StackLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+        <TabViewItem title="Tab 2" class="tab-view-item">
+            <TabViewItem.view>
+                <StackLayout class="page p-20">
+                  <Label text="Tab 2 Content" class="h1" />
+                  <StackLayout>
+                      <Label text="Nullam egestas in mauris et condimentum. Maecenas scelerisque porta nisl ut pharetra. Etiam ac urna et justo pulvinar congue ut et risus. Sed odio tortor, gravida sed massa sit amet, euismod elementum nisi. Sed suscipit nibh non eros gravida, sed scelerisque justo sollicitudin. Mauris turpis eros, hendrerit in sapien ut, eleifend malesuada risus. Quisque vestibulum porta rhoncus. Donec ullamcorper sem a auctor varius. Etiam elementum quam sit amet rutrum volutpat. In hac habitasse platea dictumst. Vestibulum nibh diam, laoreet eget velit eget, iaculis eleifend purus. Duis a ornare nibh, a mollis urna. Suspendisse potenti. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed lobortis et risus vel rutrum. Sed vel sem nunc." textWrap="true" class="body" />
+                  </StackLayout>
+                </StackLayout>
+            </TabViewItem.view>
+        </TabViewItem>
+    </TabView.items>
+</TabView>
+```
 
 **Native Component**
 
@@ -217,7 +287,16 @@ With the [TabView]({%ns_cookbook ui/tab-view%}) control, you can implement tab n
 
 With the [SegmentedBar]({%ns_cookbook ui/segmented-bar%}) control, you can implement discrete selection.
 
-![segmented-bar android](../img/gallery/android/segmentedBarPage.png "segmented-bar android")![segmented-bar ios](../img/gallery/ios/segmentedBarPage.png "segmented-bar ios")
+```XML
+<SegmentedBar class="segmented-bar">
+    <SegmentedBar.items>
+        <SegmentedBarItem title="First" />
+        <SegmentedBarItem title="Second" />
+        <SegmentedBarItem title="Third" />
+        
+    </SegmentedBar.items>
+</SegmentedBar>
+```
 
 **Native Component**
 
@@ -229,7 +308,9 @@ With the [SegmentedBar]({%ns_cookbook ui/segmented-bar%}) control, you can imple
 
 With the [DatePicker]({%ns_cookbook ui/date-picker%}) control, you can pick a date.
 
-![date-picker android](../img/gallery/android/datePickerPage.png "date-picker android")![date-picker ios](../img/gallery/ios/datePickerPage.png "date-picker ios")
+```XML
+<DatePicker day="{{day}}" month="{{month}}" year="{{year}}"></DatePicker>
+```
 
 **Native Component**
 
@@ -241,7 +322,9 @@ With the [DatePicker]({%ns_cookbook ui/date-picker%}) control, you can pick a da
 
 With the [TimePicker]({%ns_cookbook ui/time-picker%}) widget, you can pick a time.
 
-![time-picker android](../img/gallery/android/timePickerPage.png "time-picker android")![time-picker ios](../img/gallery/ios/timePickerPage.png "time-picker ios")
+```XML
+<TimePicker hour="{{hour}}" minute="{{min}}"></TimePicker>
+```
 
 **Native Component**
 
@@ -253,7 +336,9 @@ With the [TimePicker]({%ns_cookbook ui/time-picker%}) widget, you can pick a tim
 
 With the [ListPicker]({%ns_cookbook ui/list-picker%}) widget, you can pick a value from a list.
 
-![list-picker android](../img/gallery/android/listPickerPage.png "list-picker android")![list-picker ios](../img/gallery/ios/listPickerPage.png "list-picker ios")
+```XML
+<ListPicker items="{{sampleItems}}"></ListPicker>
+```
 
 **Native Component**
 
@@ -264,5 +349,27 @@ With the [ListPicker]({%ns_cookbook ui/list-picker%}) widget, you can pick a val
 ## Dialogs
 
 The [dialogs module]({%slug dialogs %}) lets you create and show dialog windows.
+
+```TypeScript
+import * as dialogs from 'ui/dialogs';
+
+class ViewModel {
+  public alert() {
+    dialogs.alert('NativeScript is fun!');
+  }
+
+  public confirm() {
+    dialogs.confirm('Are you sure?');
+  }
+  
+  public prompt() {
+    dialogs.prompt('Please enter your name:');
+  }
+
+  public login() {
+    dialogs.login('Login');
+  }
+}
+```
 
 ![dialog-confirm android](../img/gallery/android/dialogsPage_confirm.png "dialog-confirm android")![dialog-confirm ios](../img/gallery/ios/dialogsPage_confirm.png "dialog-confirm ios")
