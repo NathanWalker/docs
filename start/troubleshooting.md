@@ -15,11 +15,9 @@ previous_url: /troubleshooting
 
 The NativeScript framework has a vibrant community that’s here to help when you run into problems.
 
-If you hit an issue, start by seeing if anyone else has reported the problem on [Stack Overflow](http://stackoverflow.com/questions/tagged/nativescript). If you can’t find any information, try [asking the question yourself](http://stackoverflow.com/questions/ask) with any details needed to recreate the issue. Make sure to include the “NativeScript” tag so your question is visible to the NativeScript community.
+If you hit an issue, start by seeing if anyone else has reported the problem on [the NativeScript community forum](http://forum.nativescript.org/). If you can’t find any information, try creating a new forum topic with any details needed to recreate the issue.
 
-If you need more help than a Q&A format like Stack Overflow can provide, try [joining the NativeScript community Slack](http://developer.telerik.com/wp-login.php?action=slack-invitation). The Slack chat is a great place to get help troubleshooting problems, as well as connect with other NativeScript developers.
-
-Finally, if you’ve found an issue with the NativeScript framework itself, please report the problem in the appropriate GitHub repository.
+If you’ve found an issue with the NativeScript framework itself, please report the problem in the appropriate GitHub repository.
 
 - [NativeScript CLI](https://github.com/nativescript/nativescript-cli/issues)
 - [NativeScript modules](https://github.com/nativescript/nativescript/issues)
@@ -64,7 +62,7 @@ A problem occurred configuring root project 'app_name'.
 
 ### Cannot run or debug apps on iOS 8.1.3 devices with Xcode 6.1
 
-**Problem:** On OS X systems with Xcode 6.1 installed, you cannot run or debug apps on iOS 8.1.3 devices.<br/>The developer disk images provided with the iOS SDK in Xcode 6.1 are not compatible with iOS 8.1.3. The NativeScript CLI uses these disk images to work with your attached iOS devices.
+**Problem:** On macOS systems with Xcode 6.1 installed, you cannot run or debug apps on iOS 8.1.3 devices.<br/>The developer disk images provided with the iOS SDK in Xcode 6.1 are not compatible with iOS 8.1.3. The NativeScript CLI uses these disk images to work with your attached iOS devices.
 
 **Solution:** Update to Xcode 6.1.1 or later.
 
@@ -74,7 +72,7 @@ A problem occurred configuring root project 'app_name'.
 
 **Solution:** Re-run the `debug` command. If you continue to have issue with your Android emulator performance, you may want to consider using a more performant third-party emulator option such as [Genymotion](https://www.genymotion.com/).
 
-### The debug tools for Android never launch on OS X
+### The debug tools for Android never launch on macOS
 
 **Problem:** The NativeScript CLI uses the [opener npm package](https://www.npmjs.com/package/opener) to open Chrome. The current version of the package that the CLI uses cannot open the browser.
 
@@ -89,3 +87,27 @@ A problem occurred configuring root project 'app_name'.
 - Uninstall the old .apk (Android) or .ipa (iOS) from the device or emulator you are running the app on.
 - Execute the `tns build android` or `tns build ios` command to create a new .apk or .ipa for your app.
 - Execute the `tns run android` or `tns run ios` command to install the new executable, and you'll find your files are now packaged into your application.
+
+### Problems with running on simulators/emulators and devices
+
+**Problem:** Running your app on the iOS simulator produces an error like this:
+```
+Command xcrun with arguments simctl launch CC9DBE24-A540-40E4-A187-E7DE3ECDA254 org.nativescript.groceries failed with exit code 4. Error output: An error was encountered processing the command (domain=FBSOpenApplicationErrorDomain, code=4):
+The operation couldn’t be completed. (FBSOpenApplicationErrorDomain error 4.)
+```
+
+**Solution:** Try  `iOS Simulator -> Reset Contents and Settings`
+
+**Problem:** Running your app on Android produces an error like this:
+```
+The system failed to delete the package for an unspecified reason.
+```
+
+**Solution:** Ignore this warning. This happens only if you have never deployed the app before, because the CLI is trying to delete it before re-deploying it.
+
+**Problem:** Running your app on Android produces an error like this:
+```
+The package manager service found that the device didn't have enough storage space to install the app.
+```
+
+**Solution:** Free more space on your device/emulator.

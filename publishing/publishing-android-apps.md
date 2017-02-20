@@ -31,13 +31,8 @@ previous_url: /core-concepts/publishing-android-apps
 ## Overview
 You can publish a NativeScript app in *Google Play* the same way [you would release a purely native Android app](http://developer.android.com/tools/publishing/publishing_overview.html).
 
- 1. Verify that the Android native project inside your app contains your latest changes and resources by running the following command.
- 
-     ```
-     tns prepare android
-     ```
- 2. Make sure that you have a `.keystore` file to sign your app with. For more information, see [How to create  a .keystore file](http://developer.android.com/tools/publishing/app-signing.html#signing-manually)?
- 3. Build your project in release mode by running the following command:
+ 1. Make sure that you have a `.keystore` file to sign your app with. For more information, see [How to create  a .keystore file](http://developer.android.com/tools/publishing/app-signing.html#signing-manually)?
+ 2. Build your project in release mode by running the following command:
  
     ```
     tns build android --release --key-store-path <path-to-your-keystore> --key-store-password <your-key-store-password> --key-store-alias <your-alias-name> --key-store-alias-password <your-alias-password> 
@@ -56,7 +51,8 @@ You can publish a NativeScript app in *Google Play* the same way [you would rele
 Both *Package Name*, and *Application Id*, are unique identifiers, provided by you for your app.
  - *Package Name* is used to identify resources such as the `R`.
  - *Application Id* is used to identify your app on devices and at the *Google Play*.
-In the NativeScript framework, both are set to the `nativescript.id` in `package.json`.
+
+In the NativeScript framework, both are set to the `applicationId` in `app.gradle`.
 The NativeScript CLI build system will set them as the `package` attribute in the generated project in `platforms/android/src/main/AndroidManifest.xml`.
 In the `app/App_Resources/Android/AndroidManifest.xml` it will use a placeholder: `package="__PACKAGE__"`. Do **not** modify the `package` attribute there.
 

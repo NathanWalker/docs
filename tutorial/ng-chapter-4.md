@@ -17,22 +17,22 @@ In this chapter you'll learn about NativeScript modules, which are the TypeScrip
 - [4.4: GridLayout](#44-gridlayout)
 - [4.5: ActivityIndicator](#45-activityindicator)
 
-If you dig into `node_modules/tns-core-modules` you can get an idea of how these modules work. Start by finding the `node_modules/tns-core-modules/camera` folder, which includes the implementation of the camera module. It includes:
+If you dig into `node_modules/tns-core-modules` you can get an idea of how these modules work. Start by finding the `node_modules/tns-core-modules/color` folder, which includes the implementation of the color module. It includes:
 
 - a `package.json` file that sets the name of the module;
-- a file containing the module's Android implementation (`camera.android.js`);
-- a file containing the module's iOS implementation (`camera.ios.js`);
-- a file containing code shared by the Android and iOS implementations (`camera-common.js`)
+- a file containing the module's Android implementation (`color.android.js`);
+- a file containing the module's iOS implementation (`color.ios.js`);
+- a file containing code shared by the Android and iOS implementations (`color-common.js`)
 
 > **NOTE**:
 > * You can refer to the [Node.js documentation on folders as modules](https://nodejs.org/api/modules.html#modules_folders_as_modules) for more detailed information on how NativeScript organizes its modules.
-> * The “tns-core-modules” package only includes compiled JavaScript code to cut down on file size. You can find the TypeScript code for each of these modules in the [main NativeScript GitHub repo](https://github.com/NativeScript/nativescript), for instance here’s the [camera module’s source code](https://github.com/NativeScript/nativescript/tree/master/tns-core-modules/camera).
+> * The “tns-core-modules” package only includes compiled JavaScript code to cut down on file size. You can find the TypeScript code for each of these modules in the [main NativeScript GitHub repo](https://github.com/NativeScript/nativescript), for instance here’s the [color module’s source code](https://github.com/NativeScript/nativescript/tree/master/tns-core-modules/color).
 
 The `*.ios.*` and `*.android.*` naming convention should look familiar, as it’s the exact same convention we used to include Android- and iOS-specific styling in [chapter 2](ng-chapter-2). NativeScript uses this same convention to implement its modules on iOS and Android. Now that you know where these modules are, let's take a closer look at what else they can do for your app, starting with a closer looks at what you can do with NativeScript’s UI elements.
 
 ## 4.1: UI elements
 
-So far, you’ve only used NativeScript UI elements by including them in an Angular 2 component’s `template`, but you can also programmatically create and access UI elements, and each UI element has a set of properties and methods you can use to customize your app. To see how this works lets access the `<Page>` UI element and make some changes to it.
+So far, you’ve only used NativeScript UI elements by including them in an Angular component’s `template`, but you can also programmaticly create and access UI elements, and each UI element has a set of properties and methods you can use to customize your app. To see how this works lets access the `<Page>` UI element and make some changes to it.
 
 <h4 class="exercise-start">
     <b>Exercise</b>: Customize the Page
@@ -58,7 +58,7 @@ import { Component, OnInit } from "@angular/core";
 export class LoginComponent implements OnInit {
 ```
 
-If you’re using an editor that supports TypeScript, you should see an error that says something like *“Class ‘LoginComponent’ incorrectly implements interface ‘OnInit’”*. When you implement a TypeScript class interface, you’re telling the TypeScript compiler that you must implement all methods that the interface requires. In the case of `OnInit`, Angular 2 requires you to implement a single `ngOnInit()` method. To implement it, add the following code within the `LoginComponent` class:
+If you’re using an editor that supports TypeScript, you should see an error that says something like *“Class ‘LoginComponent’ incorrectly implements interface ‘OnInit’”*. When you implement a TypeScript class interface, you’re telling the TypeScript compiler that you must implement all methods that the interface requires. In the case of `OnInit`, Angular requires you to implement a single `ngOnInit()` method. To implement it, add the following code within the `LoginComponent` class:
 
 ``` TypeScript
 ngOnInit() {
@@ -67,7 +67,7 @@ ngOnInit() {
 }
 ```
 
-`ngOnInit` is one of several [component lifecycle hooks](https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html) that Angular 2 provides. As its name implies, `ngOnInit` gets invoked when Angular initializes this component.
+`ngOnInit` is one of several [component lifecycle hooks](https://angular.io/docs/ts/latest/guide/lifecycle-hooks.html) that Angular provides. As its name implies, `ngOnInit` gets invoked when Angular initializes this component.
 
 We’ll discuss what the code within `ngOnInit()` does momentarily, but finally, to make these changes compile and run, change the `LoginComponent`’s existing `constructor()` declaration to use the code below.
 
@@ -140,8 +140,7 @@ With these new imports in place, next, add the following property to the `LoginC
 @ViewChild("container") container: ElementRef;
 ```
 
-This code uses Angular’s [`@ViewChild` decorator](https://angular.
-io/docs/ts/latest/api/core/ViewChild-var.html) to create a new property that points at the `<StackLayout>` element. To use that property, change the `LoginComponent`’s `toggleDisplay()` function in the same file to use this code:
+This code uses Angular’s [`@ViewChild` decorator](https://angular.io/docs/ts/latest/api/core/index/ViewChild-decorator.html) to create a new property that points at the `<StackLayout>` element. To use that property, change the `LoginComponent`’s `toggleDisplay()` function in the same file to use this code:
 
 ``` TypeScript
 toggleDisplay() {
@@ -240,7 +239,7 @@ How does this work? Let’s return to this chunk of code:
 
 The [`<ListView>` UI element](https://docs.nativescript.org/api-reference/classes/_ui_list_view_.listview.html) requires an `items` property that points to an array of data—in this case, the `groceryList` array you added to your `ListComponent` class. The list view element requires a child `<template>` element that specifies how to render each item in the `items` array.
 
-The `let-*` syntax is Angular 2’s way of creating template variables within loops. You can think of the syntax working like TypeScript’s `let` keyword. This gives you the ability to refer to each item in the array as `item` within the template. For this template, you render each item in the array with a single `<Label>` UI element, and because of the `[text]="item.name"` binding, those labels contain the text from the `name` property of each of the items in `groceryList` TypeScript array.
+The `let-*` syntax is Angular’s way of creating template variables within loops. You can think of the syntax working like TypeScript’s `let` keyword. This gives you the ability to refer to each item in the array as `item` within the template. For this template, you render each item in the array with a single `<Label>` UI element, and because of the `[text]="item.name"` binding, those labels contain the text from the `name` property of each of the items in `groceryList` TypeScript array.
 
 Now that you have a hardcoded list displaying, let’s see how to swap that out with live data.
 
@@ -570,7 +569,7 @@ This binds the ActivityIndicator’s `busy` attribute to an `isLoading` property
 isLoading = false;
 ```
 
-Now that the property exists, your final step is to set this flag to to `true` when the grocery data is loading. To do that, change the existing `ngOnInit()` function to use the code below:
+Now that the property exists, your final step is to set this flag to `true` when the grocery data is loading. To do that, change the existing `ngOnInit()` function to use the code below:
 
 ``` TypeScript
 ngOnInit() {
@@ -667,7 +666,7 @@ If you try out your app you should now see a nice fade-in animation:
 
 Now that you have functional login and list pages, let’s enhance the app’s functionality as a grocery list management tool. In the next chapters you'll add functionality such as email validation, social sharing, and more. And you’ll use one of NativeScript's most useful features to do so: npm modules.
 
-> **TIP**: There are several modules that come out of the box with your NativeScript installation that we did not have time to cover in this guide—including a [location service]({%ns_cookbook location%}), a [file-system helper]({%ns_cookbook file-system%}), a [timer module]({%ns_cookbook timer%}), a [camera module]({%ns_cookbook camera%}), and a whole lot more. Make sure to peruse the “Modules API” of the NativeScript documentation, or just look around your `node_modules/tns-core-modules` folder to see all of what’s available.
+> **TIP**: There are several modules that come out of the box with your NativeScript installation that we did not have time to cover in this guide—including a [file-system helper]({%ns_cookbook file-system%}), a [timer module]({%ns_cookbook timer%}), and a whole lot more. Make sure to peruse the “API Reference” of the NativeScript documentation, or just look around your `node_modules/tns-core-modules` folder to see all of what’s available.
 
 <div class="next-chapter-link-container">
   <a href="ng-chapter-5">Continue to Chapter 5—Plugins and npm Modules</a>

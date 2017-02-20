@@ -14,17 +14,17 @@ This page contains a list of all system requirements needed to build and run Nat
 * [System Requirements](#system-requirements)
 * [Advanced Setup Steps](#advanced-setup-steps)
 
-> **NOTE**: On Linux systems you can only use the NativeScript CLI to develop Android apps. This is because the NativeScript CLI uses Xcode to build iOS apps, which is only available on the OS X operating system. If you’re interested in building iOS apps on Linux, you may want to try out the [Telerik Platform](http://www.telerik.com/platform). The Telerik Platform provides robust tooling for NativeScript apps, including a service that performs iOS and Android builds in the cloud, removing the need to complete these system requirements, and allowing you to build for iOS on Linux.
+> **NOTE**: On Linux systems you can only use the NativeScript CLI to develop Android apps. This is because the NativeScript CLI uses Xcode to build iOS apps, which is only available on the macOS operating system. If you’re interested in building iOS apps on Linux, you may want to try out the [Telerik Platform](http://www.telerik.com/platform). The Telerik Platform provides robust tooling for NativeScript apps, including a service that performs iOS and Android builds in the cloud, removing the need to complete these system requirements, and allowing you to build for iOS on Linux.
 
 ## System Requirements
 
 * Ubuntu 14.04 LTS
-* The latest Node.js [4.x](https://nodejs.org/dist/latest-v4.x/), [6.x](https://nodejs.org/dist/latest-v6.x/) or [7.x](https://nodejs.org/dist/latest-v7.x/) stable official release
+* The latest stable official release of Node.js (LTS) [6.x](https://nodejs.org/dist/latest-v6.x/) 
 * G++ compiler
 * JDK 8 or a later stable official release
 * Android SDK 22 or a later stable official release
 * Local Maven repository for Support Libraries
-* Android SDK Build-tools 23.0.3 or a later stable official release
+* Android SDK Build-tools 25.0.2 or a later stable official release
 * (Optional) Genymotion to expand your testing options
 
 You must also have the following two environment variables setup for Android development:
@@ -36,7 +36,7 @@ You must also have the following two environment variables setup for Android dev
 
 Complete the following steps to set up NativeScript on your Linux development machine:
 
-1. Install the latest Node.js [4.x](https://nodejs.org/dist/latest-v4.x/), [6.x](https://nodejs.org/dist/latest-v6.x/) or [7.x](https://nodejs.org/dist/latest-v7.x/) stable official release. We recommend using Node.js v6.x.
+1. Install the latest Node.js [6.x](https://nodejs.org/dist/latest-v6.x/) or [7.x](https://nodejs.org/dist/latest-v7.x/) stable official release. We recommend using Node.js v6.x.
 
 1. If you are running on a 64-bit system, install the runtime libraries for the ia32/i386 architecture.
 

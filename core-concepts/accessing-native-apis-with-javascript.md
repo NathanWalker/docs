@@ -1,9 +1,20 @@
 ---
-title: Accessing Native APIs with JavaScript
+title: Accessing Native APIs
 description: Learn how to access native APIs in NativeScript
 position: 100
 slug: access-native-apis
 ---
+
+## Table of contents
+
+- [Overview](#overview)
+- [Numeric Types](#numeric-types)
+- [Classes and Objects](#classes-and-objects)
+- [String](#string)
+- [Boolean](#boolean)
+- [Array](#array)
+- [Undefined & Null](#undefined-and-null)
+- [Intellisense and access to native APIs via TypeScript](#intellisense-and-access-to-native-apis-via-typescript)
 
 # Overview
 
@@ -13,7 +24,7 @@ In this article, you will learn how to call native APIs from JavaScript with var
 
 # Numeric Types
 
-All native numeric types (e.g., char, short, int, double, float on iOS and byte, short, int, long, double, float on Android) are implicitly converted to JavaScript number and vice versa. For example, when you run the following code on Android:
+All native numeric types (e.g., char, short, int, double, float on iOS and byte, short, int, long, double, float on Android) are implicitly converted to JavaScript number and vice versa. For example, when you run the following code on iOS:
 
 ```javascript
 // iOS
@@ -106,7 +117,7 @@ var numbers = [3, 6, 19, -2, 7, 6];
 var min = ns.example.Math.minElement(numbers); // -2
 ```
 
-# Undefined & Null
+# Undefined and Null
 
 JavaScript [Undefined](http://www.w3schools.com/jsref/jsref_undefined.asp) & [Null](http://www.w3schools.com/js/js_datatypes.asp) map to Java null pointer and Objective-C nil. Native null values map to JavaScript null.
 
@@ -121,6 +132,38 @@ var context = ...;
 var button = new android.widget.Button(context);
 button.setOnClickListener(undefined); // the Java call will be made using the null keyword
 ```
+
+# Intellisense and access to native APIs via TypeScript
+
+To have access and Intellisense for the native APIs with TypeScript enabled project, you have to add a dev dependency to `tns-platform-declarations` 
+
+Steps to install and enable 
+
+- `npm install tns-platform-declarations --save-dev`
+
+- Modify `references.d.ts` file as follows:
+```
+/// <reference path="node_modules/tns-core-modules/tns-core-modules.es2016.d.ts" />
+/// <reference path="node_modules/tns-platform-declarations/android.d.ts" />
+/// <reference path="node_modules/tns-platform-declarations/ios.d.ts" />
+```
+
+- Modify `tsconfig.json` to contain the following settings:
+```
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "experimentalDecorators": true,
+        "lib": [
+            "es2016"
+        ]
+    }
+}
+```
+Note that d.ts files require a lot of memory and CPU. Consider adding skipLibCheck option to tsconfig file.
+For more information: [tns-platform-declarations](https://github.com/NativeScript/NativeScript/tree/master/tns-platform-declarations)
+
 
 # See Also
 * [Marshalling in Android Runtime](./../runtimes/android/marshalling/overview.md)

@@ -1,30 +1,92 @@
 ---
-title: Chapter 2—Building the UI
+title: Chapter 2—Creating User Interfaces
 position: 3
+guide: true
 environment: nativescript
 ---
 
-# Chapter 2—Building the UI
+# Chapter 2—Creating User Interfaces
 
-Before you start coding the Groceries app it's important to understand a NativeScript app's folder structure. It'll help you understand where to place new files, as well as a bit of what's going on with NativeScript under the hood.
+In this chapter you’re going to learn how to build NativeScript user interfaces, including markup, styling, images, and more.
 
-Go ahead and open your app's `sample-Groceries` folder in your text editor of choice and let's dig in.
+But to do that you’re going to start on a new app that you’ll continue building throughout the rest of the tutorial. Working on a real-world app will help teach concepts that are hard to show in simple examples, such as how to best organize your code. With that in mind let’s start by looking at what you’ll be building.
 
 ## Table of contents
 
-- [2.1: Directory structure](#21-directory-structure)
-- [2.2: Adding UI components](#22-adding-ui-components)
-- [2.3: Layouts](#23-layouts)
-- [2.4: CSS](#24-css)
-- [2.5: Images](#25-images)
+- [2.1: What you’re building](#21-what-youre-building)
+- [2.2: Directory structure](#22-directory-structure)
+- [2.3: Adding UI components](#23-adding-ui-components)
+- [2.4: Layouts](#24-layouts)
+- [2.5: CSS](#25-css)
+- [2.6: Images](#26-images)
 
-## 2.1: Directory structure
+## 2.1: What you're building
+
+The rest of this guide will walk you through building [Groceries](https://github.com/NativeScript/sample-Groceries), a groceries management app that does the following things:
+
+- Connects to an existing RESTful service.
+- Provides user registration and login.
+- Lets authenticated users add and delete groceries from a list.
+- Runs cross-platform (iOS and Android).
+
+If you follow along to the end, here's what the finished app will look like on iOS:
+
+![login](/img/cli-getting-started/nativescript/chapter0/ios/1.png)
+![register](/img/cli-getting-started/nativescript/chapter0/ios/2.png)
+![list](/img/cli-getting-started/nativescript/chapter0/ios/3.png)
+
+And here's what the app will look like on Android:
+
+![](/img/cli-getting-started/nativescript/chapter0/android/1.png)
+![](/img/cli-getting-started/nativescript/chapter0/android/2.png)
+![](/img/cli-getting-started/nativescript/chapter0/android/3.png)
+
+Let’s get the starting point of this app so you can follow along with the rest of this guide.
+
+<h4 class="exercise-start">
+    <b>Exercise</b>: Get the Groceries starting point
+</h4>
+
+Your first step will be to find a place on your development machine to store this new project. You might want to set up a folder structure that looks something like this:
+
+<div class="no-copy-button"></div>
+
+```
+.
+└── NativeScript-Projects
+    ├── HelloWorld
+    └── ...
+```
+
+Once you have a folder structure you’re comfortable with in place, navigate to that folder using your terminal’s `cd` command, and run the `tns create` command below to create a new app named Groceries.
+
+```
+tns create Groceries --template nativescript-template-groceries
+```
+
+The command will again take a minute to complete, as the Groceries template contains a number of images you’ll be using as part of this tutorial. When the process finishes, use the `cd` command to navigate into the new app.
+
+```
+cd Groceries
+```
+
+And then open the new app in your text editor of choice. If you’re using Visual Studio Code you can use the `code` command to do so.
+
+```
+code .
+```
+
+<div class="exercise-end"></div>
+
+Now that you have the app locally, let’s take a look at the files that make up this application.
+
+## 2.2: Directory structure
 
 To keep things simple, let's start by looking at the outer structure of the Groceries app:
 
 ```
 .
-└── sample-Groceries
+└── Groceries
     ├── app
     │   └── ...
     ├── node_modules
@@ -39,9 +101,9 @@ Here's what these various files and folders do:
 
 - **app**: This folder contains all the development resources you need to build your app. You'll be spending most of your time editing the files in here.
 - **node_modules**: This folder contains your app's npm module dependencies. All new NativeScript projects start with a single dependency on tns-core-modules.
-- **node_modules/tns-core-modules**: This folder contains your app's NativeScript modules, which are a series of NativeScript-provided JavaScript modules you'll use to build your app. Each module contains the platform-specific code needed to implement some feature—the camera, http calls, the file system, and so forth—exposed through a platform-agnostic API (e.g. `camera.takePicture()`). We'll look at some examples momentarily.
+- **node_modules/tns-core-modules**: This folder contains your app's NativeScript modules, which are a series of NativeScript-provided JavaScript modules you'll use to build your app. Each module contains the platform-specific code needed to implement some feature—http calls, the file system, and so forth—exposed through a platform-agnostic API (e.g. `http.getJSON("https://httpbin.org/get")`). We'll look at some examples in [chapter 4](chapter-4). The source code for these modules lives at <https://github.com/NativeScript/nativescript>.
 - **package.json**: This file contains your app's configuration details, such as your app id, the version of NativeScript you're using, and also which npm modules your app uses. We'll take a closer look at how to use this file when we talk about using npm modules in [chapter 5](chapter-5).
-- **platforms**: This folder contains the platform-specific code NativeScript needs to build native iOS and Android apps. For example in the `android` folder you'll find things like your project's `AndroidManifest.xml` and .apk executable files. Similarly, the `ios` folder contains the Groceries' Xcode project and .ipa executables. Note, users on Windows machines will not have an `ios` folder.
+- **platforms**: This folder contains the platform-specific code NativeScript needs to build native iOS and Android apps. For example in the `android` folder you'll find things like your project's `AndroidManifest.xml` and .apk executable files. Similarly, the `ios` folder contains the Groceries' Xcode project and .ipa executables. Note, users on Windows and Linux machines will not have an `ios` folder.
 
 The NativeScript CLI manages the `platforms` folder for you as you develop and run your app; therefore, it's a best practice to treat the `platforms` folder as generated code. The Groceries app includes the `platforms` folder in its [`.gitignore`](https://github.com/NativeScript/sample-Groceries/blob/master/.gitignore) to exclude its files from source control.
 
@@ -49,7 +111,7 @@ Next, let's dig into the `app` folder, as that's where you'll be spending the ma
 
 ```
 .
-└── sample-Groceries
+└── Groceries
     ├── app
     │   ├── App_Resources
     │   │   ├── Android
@@ -86,7 +148,7 @@ Here, you're requiring, or importing, the [NativeScript application module]({%ns
 
 Now that your app is ready for development, let's add some UI components to make your login screen show more than some basic text.
 
-## 2.2: Adding UI components
+## 2.3: Adding UI components
 
 Let's dig into the files used to create your app's UI, which reside in the `app/views` folder. Each folder in `app/views` contains the code for one of the three pages in Groceries: `list`, `login`, and `register`. If you look in the `app/views/login` folder, you'll see three files: `login.css`, `login.js`, and the `login.xml` file we updated in the previous chapter. When you open `login.xml` again you should see the following code:
 
@@ -125,7 +187,7 @@ NativeScript UI components provide attributes to let you configure their behavio
 - `<Button>`
     - `text`: Controls the text displayed within the button.
 
-After you [run your app](#development-workflow) with this change, you will see a single `<Button>` component on the screen:
+After your app updates with this change, you may expect to see a polished login screen, but instead you will see a single `<Button>` element on the screen:
 
 ![login 1](/img/cli-getting-started/nativescript/chapter2/ios/1.png)
 ![login 1](/img/cli-getting-started/nativescript/chapter2/android/1.png)
@@ -134,12 +196,13 @@ Currently you only see a single button because you need to tell NativeScript how
 
 > **TIP**: The NativeScript docs include a [full list of the UI components and attributes](/ui-with-xml) with which you can build your apps. You can even [build your own, custom UI components](/ui-with-xml#custom-components).
 
-## 2.3: Layouts 
+## 2.4: Layouts 
 
 NativeScript provides several different layout containers that allow you to place UI components precisely where you want them to appear. 
 
 - The [Absolute Layout]({%ns_cookbook ui/layouts/absolute-layout%}) lets you position elements using explicit x and y coordinates. This is useful when you need to place elements in exact locations, for example showing an activity indicator widget in the top-left corner of your app.
 - The [Dock Layout]({%ns_cookbook ui/layouts/dock-layout%}) is useful for placing UI elements at the outer edges of your app. For example, a container docked at the bottom of the screen would be a good location for an ad.
+- The [Flexbox Layout]({%ns_cookbook ui/layouts/flexbox-layout%}) lets you arrange UI components using the syntax as `display: flex` on web.
 - The [Grid Layout]({%ns_cookbook ui/layouts/grid-layout%}) lets you divide your interface into a series of rows and columns, much like a `<table>` in HTML markup.
 - The [Stack Layout]({%ns_cookbook ui/layouts/stack-layout%}) lets you stack child UI components either vertically or horizontally.
 - The [Wrap Layout]({%ns_cookbook ui/layouts/wrap-layout%}) lets child UI components flow from one row or column to the next when space is filled.
@@ -178,10 +241,10 @@ After you run your app with this change, you'll see that your login page's UI co
 Although the UI components are in the correct order, they could use some spacing and color to make the app look a bit nicer. To do that let's look at another NativeScript feature: CSS.
 
 > **TIP**:
-> * Refer to the NativeScript docs for a [more detailed look at how NativeScript layouts work](/layouts) and the various things you can do to configure them.
+> * Refer to the NativeScript docs for a [look at how NativeScript layouts work](/layouts) and the various things you can do to configure them.
 > * Check out Jen Looper's article on [demystifying NativeScript layouts](https://www.nativescript.org/blog/demystifying-nativescript-layouts) for a thorough look at NativeScript layouts in action.
 
-## 2.4: CSS
+## 2.5: CSS
 
 NativeScript uses a [subset of CSS](/styling) to change the visual appearance of your app. You can use three mechanisms to add CSS properties to UI components: [application-wide CSS](/styling#application-wide-css) (`app.css`), [page-specific CSS](/styling#page-specific-css), and an [inline `style` attribute](/styling#inline-css).
 
@@ -276,7 +339,7 @@ With these changes in place, you'll notice that the app looks halfway decent now
 
 Feel free to take some time to play with the look of this app before moving on. You can try adding some additional CSS class names, or adding some page-specific styles in your `login.css` file. When you're ready, let's move on and add an image to this login screen.
 
-## 2.5: Images
+## 2.6: Images
 
 In NativeScript you use the `<Image>` UI component and its `src` attribute to add images to your pages. The `src` attribute lets you specify your image in three ways. The first (and simplest) way is to point at the URL of an image:
 
@@ -306,7 +369,7 @@ In `login.xml`, add the `<Image>` below as the first child of the existing `<Sta
 
 The `res://` syntax tells NativeScript to use a platform-specific resource, in this case an image. Platform-specific resources go in your app's `app/App_Resources` folder. If you look there you'll find a few different image files, several of which are named `logo.png`.
 
-Although more complex than putting an image directly in the `app` folder, using platform-specific images gives you more control over image display on different device dimensions. For example iOS lets you provide three different image files for devices with different pixel densities. As such you'll find logos named `logo.png`, `logo@2x.png`, and `logo@3x.png` in your `App_Resources/iOS` folder. For Android you'll find similar image files in `App_Resources/Android/drawable-hdpi` (for "high" dpi, or high dots-per-inch), `App_Resources/Android/drawable-mdpi` (for medium-dpi), and `App_Resources/Android/drawable-ldpi` (for low-dpi).
+Although more complex than putting an image directly in the `app` folder, using platform-specific images gives you more control over image display on different device dimensions. For example iOS lets you provide three different image files for devices with different pixel densities. As such you'll find logos named `logo.png`, `logo@2x.png`, and `logo@3x.png` in your `App_Resources/iOS` folder. For Android you'll find similar image files in `App_Resources/Android/drawable-mdpi` (for "medium" dpi, or medium dots-per-inch), `App_Resources/Android/drawable-hdpi` (for high-dpi), `App_Resources/Android/drawable-xhdpi` (for extra-high-dpi), and so forth.
 
 Once these files are in place the NativeScript framework knows how to pick the correct file; all you have to do is reference the image using `res://` and its base file name—i.e. `res://logo`. Here's what your login screen should look like on iOS and Android:
 
