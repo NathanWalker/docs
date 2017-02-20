@@ -32,7 +32,7 @@ NativeScript ships with a set of user interface [`views`](http://docs.nativescri
   <li><a href="#dialogs">Dialogs</a></li>
 </ul>
 
-<iframe src="https://appetize.io/embed/hcb273p7nr9fg7dnd1gd1cr15r?device=iphone5s&scale=75&autoplay=true&orientation=portrait&deviceColor=black&xdocMsg=true" width="274px" height="587px" frameborder="0" scrolling="no" style="position:fixed;right:0;bottom:-30px;"></iframe>
+<iframe src="https://appetize.io/embed/hcb273p7nr9fg7dnd1gd1cr15r?device=iphone5s&scale=75&orientation=portrait&osVersion=9.3&autoplay=true&xdocMsg=true" width="274px" height="587px" frameborder="0" scrolling="no" style="position:fixed;right:0;bottom:-30px;"></iframe>
 
 Defining the layout of the application is also an important part of the application development. For more information about the different layout containers that are available in NativeScript, see [The NativeScript Layout System]({%slug layouts %}).
 
